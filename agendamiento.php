@@ -97,12 +97,14 @@
           <br>
           <div class="formulario" data-aos="fade-up" data-aos-duration="800">
             <br>
+            <br>
             <h3 class="titulo" data-aos="fade-up" data-aos-duration="800">1. Escoge el servicio que requieres:</h3>
+            <br>
             <br>
             <div class="servicios-container">
               <?php
               // Conexión a la base de datos
-              include("connect.php");
+              include("includes/connect.php");
               // Obtener servicios de la tabla "servicios"
               $consulta_servicios = "SELECT * FROM servicios";
               $result_servicios = mysqli_query($conexion, $consulta_servicios);
@@ -139,7 +141,9 @@
           <br>
           <div class="formulario" data-aos="fade-up" data-aos-duration="800">
             <br>
+            <br>
             <h3 class="titulo" data-aos="fade-up" data-aos-duration="800">2. Escoge el peluquero:</h3>
+            <br>
             <br>
             <div class="peluqueros-container">
               <?php
@@ -172,7 +176,9 @@
           <br>
           <div class="formulario" data-aos="fade-up" data-aos-duration="800">
             <br>
+            <br>
             <h3 class="titulo" data-aos="fade-up" data-aos-duration="800">3. Escoge la fecha y hora:</h3>
+            <br>
             <br>
             <label for="fecha">Fecha:</label>
             <input type="date" name="fecha" id="fecha" required><br>
@@ -184,7 +190,9 @@
           <br>
           <div class="formulario" data-aos="fade-up" data-aos-duration="800">
             <br>
+            <br>
             <h3 class="titulo" data-aos="fade-up" data-aos-duration="800">4. Ingresa tus datos de contacto:</h3>
+            <br>
             <br>
             <label for="nombre_cliente">Nombre:</label>
             <input type="text" name="nombre_cliente" id="nombre" required><br>
@@ -196,6 +204,9 @@
             <input type="email" name="email_cliente" id="email" required><br>
             <br>
             <input type="submit" value="Confirmar Cita">
+            <br>
+            <br>
+            <br>
           </div>
         </form>
         <?php
@@ -205,41 +216,10 @@
       </div>
     </section><!-- End Cta Section -->
   </main><!-- End #main -->
-
-
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-    <div class="container">
-      <div class="logo me-auto">
-        <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
-      </div>
-      <div class="social-links">
-        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="#" class="youtube"><i class="bx bxl-youtube"></i></a>
-        <a href="#" class="tiktok"><i class="bx bxl-tiktok"></i></a>
-        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-      </div>
-      <div class="additional-links">
-        <ul>
-          <li><b><a href="enlace1.html">Trabaja con nosotros</a></b></li>
-          <li><b><a href="enlace2.html">Acceso funcionarios</a></b></li>
-        </ul>
-      </div>
-      <div class="copyright">
-        2023 &copy; Copyright <i><span>Millenium Peluquería</span></i>.
-        All Rights Reserved
-      </div>
-      <div class="credits">
-        Designed by <a href="jmorjuelafdev@gmail.com">jmorjuelafdev</a>
-      </div>
-    </div>
-  </footer><!-- End Footer -->
-
-  <a href="#" class="back-to-top d-flex align-items-center
-      justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
+  
+  <?php
+  include('includes/footer.php') //Footer
+  ?>
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>

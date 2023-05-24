@@ -54,19 +54,20 @@
         <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
       </div>
 
+      <?php //Menú página importando formato json
+      $jsonMenu = file_get_contents('assets/json/pagina.json');
+      $menuData = json_decode($jsonMenu, true);
+      $menu = $menuData['menu_pagina'];
+      ?>
+
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Inicio</a></li>
-          <li><a class="nav-link scrollto" href="#nosotros">Nosotros</a></li>
-          <li><a class="nav-link scrollto" href="#servicios">Servicios</a></li>
-          <li><a class="nav-link scrollto" href="#menu">Precios</a></li>
-          <li><a class="nav-link scrollto" href="#peluqueros">Estilistas</a></li>
-          <li><a class="nav-link scrollto" href="#gallery">Clientes</a></li>
-          <li><a class="nav-link scrollto" href="#contactenos">Contáctenos</a></li>
+          <?php foreach ($menu as $item) : ?>
+            <li><a class="nav-link scrollto" href="<?php echo $item[1]; ?>"><?php echo $item[0]; ?></a></li>
+          <?php endforeach; ?>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
-
       <a href="#reserva" class="reservas-btn scrollto">Reservar una
         cita</a>
 
@@ -937,40 +938,9 @@
     </section><!-- End Contactenos Section -->
 
   </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-    <div class="container">
-      <div class="logo me-auto">
-        <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
-      </div>
-      <div class="social-links">
-        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="#" class="youtube"><i class="bx bxl-youtube"></i></a>
-        <a href="#" class="tiktok"><i class="bx bxl-tiktok"></i></a>
-        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-      </div>
-      <div class="additional-links">
-        <ul>
-          <li><b><a href="hoja_de_vida.php">Trabaja con nosotros</a></b></li>
-          <li><b><a href="enlace2.html">Acceso funcionarios</a></b></li>
-        </ul>
-      </div>
-      <div class="copyright">
-        2023 &copy; Copyright <i><span>Millenium Peluquería</span></i>.
-        All Rights Reserved
-      </div>
-      <div class="credits">
-        Designed by <a href="jmorjuelafdev@gmail.com">jmorjuelafdev</a>
-      </div>
-    </div>
-  </footer><!-- End Footer -->
-
-
-  <a href="#" class="back-to-top d-flex align-items-center
-      justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <?php
+  include('includes/footer.php')
+  ?>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

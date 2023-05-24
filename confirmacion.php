@@ -32,6 +32,7 @@
   <a href="https://wa.me/573162248270?" class="whatsapp" target="_blank"> <i class="fa-brands fa-whatsapp"></i>
     <h6>Contáctenos</h6>
   </a>
+  
   <!-- ======= Top Bar ======= -->
   <section id="topbar" class="d-flex align-items-center fixed-top
       topbar">
@@ -43,7 +44,6 @@
           PM</span></i>
     </div>
   </section>
-
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center
       header">
@@ -90,7 +90,7 @@
     <section class="inner-page">
       <?php
       require 'vendor/autoload.php'; // Incluir el archivo de autoloading de Composer
-      include("connect.php");
+      include("includes/connect.php");
 
       // Verificar si se envió el formulario
       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -121,17 +121,10 @@
         mysqli_query($conexion, $insertar_cita);
         $cita_id = mysqli_insert_id($conexion); // Obtener el ID de la cita insertada
 
-        // Configuración de PHPMailer y envío del correo electrónico
-        $mail = new PHPMailer\PHPMailer\PHPMailer();
-        $mail->isSMTP();
-        $mail->Host = 'smtp-mail.outlook.com'; // Configura el servidor SMTP
-        $mail->SMTPAuth = true;
-        $mail->Username = 'mail'; // Tu dirección de correo electrónico
-        $mail->Password = ''; // Tu contraseña de correo electrónico
-        $mail->SMTPSecure = 'tls';
-        $mail->Port = 587;
+        // Configuración de PHPMailer y envío del correo electrónic
+        include("includes/email_config.php");
 
-        $mail->setFrom('mail', 'Name'); // Tu dirección de correo y nombre
+        $mail->setFrom('marcelina8112@hotmail.com', 'Millenium Peluquería'); // Tu dirección de correo y nombre
         $mail->addAddress($email_cliente, $nombre_cliente); // Dirección de correo y nombre del cliente
 
         $mail->Subject = 'Confirmación de cita'; // Asunto del correo
@@ -238,40 +231,9 @@
       </div>
     </section>
   </main><!-- End #main -->
-
-
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-    <div class="container">
-      <div class="logo me-auto">
-        <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
-      </div>
-      <div class="social-links">
-        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="#" class="youtube"><i class="bx bxl-youtube"></i></a>
-        <a href="#" class="tiktok"><i class="bx bxl-tiktok"></i></a>
-        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-      </div>
-      <div class="additional-links">
-        <ul>
-          <li><b><a href="enlace1.html">Trabaja con nosotros</a></b></li>
-          <li><b><a href="enlace2.html">Acceso funcionarios</a></b></li>
-        </ul>
-      </div>
-      <div class="copyright">
-        2023 &copy; Copyright <i><span>Millenium Peluquería</span></i>.
-        All Rights Reserved
-      </div>
-      <div class="credits">
-        Designed by <a href="jmorjuelafdev@gmail.com">jmorjuelafdev</a>
-      </div>
-    </div>
-  </footer><!-- End Footer -->
-
-  <a href="#" class="back-to-top d-flex align-items-center
-      justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <?php
+  include('includes/footer.php') //Footer
+  ?>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
