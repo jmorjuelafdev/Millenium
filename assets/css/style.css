@@ -605,31 +605,11 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Nosotros
+# nosotros Us
 --------------------------------------------------------------*/
-.nosotros {
-  background: #f9f9f0;
-}
-
-.nosotros .content {
-  padding: 0 80px;
-}
-
 .nosotros .content h3 {
-  font-weight: 400;
-  font-size: 34px;
-  color: #3a5743;
-}
-
-.nosotros .content h4 {
-  font-size: 20px;
-  font-weight: 700;
-  margin-top: 5px;
-}
-
-.nosotros .content p {
-  font-size: 15px;
-  color: #848484;
+  font-weight: 600;
+  font-size: 26px;
 }
 
 .nosotros .content ul {
@@ -637,64 +617,20 @@ section {
   padding: 0;
 }
 
-.nosotros .content ul li + li {
-  margin-top: 15px;
-}
-
 .nosotros .content ul li {
-  position: relative;
-  padding-left: 26px;
+  padding-bottom: 10px;
 }
 
 .nosotros .content ul i {
   font-size: 20px;
+  padding-right: 4px;
   color: #e2b808;
-  position: absolute;
-  left: 0;
-  top: 2px;
 }
 
 .nosotros .content p:last-child {
   margin-bottom: 0;
 }
 
-.nosotros .video-box {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  min-height: 400px;
-  position: relative;
-}
-
-@media (max-width: 1024px) {
-  .nosotros .content,
-  .nosotros .accordion-list {
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
-
-@media (max-width: 992px) {
-  .nosotros .content {
-    padding-top: 30px;
-  }
-
-  .nosotros .accordion-list {
-    padding-bottom: 30px;
-  }
-}
-
-@keyframes pulsate-btn {
-  0% {
-    transform: scale(0.6, 0.6);
-    opacity: 1;
-  }
-
-  100% {
-    transform: scale(1, 1);
-    opacity: 0;
-  }
-}
 /*--------------------------------------------------------------
 # Servicios
 --------------------------------------------------------------*/
@@ -806,9 +742,6 @@ section {
 }
 
 .menu .menu-content::after {
-  content: "......................................................................"
-    "...................................................................."
-    "....................................................................";
   position: absolute;
   left: 20px;
   right: 0;
@@ -819,12 +752,11 @@ section {
 }
 
 .menu .menu-content p {
-  padding-right: 10px;
   background: #fff;
   position: relative;
-  z-index: 3;
   font-weight: 700;
   color: #3b7080;
+  text-align: left;
 }
 
 .menu .menu-content span {
@@ -836,11 +768,15 @@ section {
 }
 
 .menu .menu-ingredients {
+  position: relative;
+  z-index: 3;
   font-style: italic;
   font-size: 14px;
   font-family: "Comic Neue", sans-serif;
   color: #948c81;
+  text-align:left;
 }
+
 
 /*--------------------------------------------------------------
 # Reserva

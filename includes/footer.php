@@ -1,29 +1,42 @@
 <!-- ======= Footer ======= -->
+<?php
+// Obtener el contenido del archivo JSON
+$jsonData = file_get_contents('assets/json/pagina.json');
+
+// Decodificar el contenido JSON a un array asociativo
+$data = json_decode($jsonData, true);
+
+// Obtener los datos del footer
+$footer = $data['footer'];
+
+?>
+
 <footer id="footer">
-    <div class="container">
-      <div class="logo me-auto">
-        <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
-      </div>
-      <div class="social-links">
-        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="#" class="youtube"><i class="bx bxl-youtube"></i></a>
-        <a href="#" class="tiktok"><i class="bx bxl-tiktok"></i></a>
-        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-      </div>
-      <div class="additional-links">
-        <ul>
-          <li><b><a href="trabaja_con_nosotros.php">Trabaja con nosotros</a></b></li>
-          <li><b><a href="enlace2.html">Acceso funcionarios</a></b></li>
-        </ul>
-      </div>
-      <div class="copyright">
-        2023 &copy; Copyright <i><span>Millenium Peluquería</span></i>.
-        All Rights Reserved
-      </div>
-      <div class="credits">
-        Designed by <a href="jmorjuelafdev@gmail.com">jmorjuelafdev</a>
-      </div>
+  <div class="container">
+    <div class="logo me-auto">
+      <a href="index.html"><img src="<?php echo $footer['logo']; ?>" alt="" class="img-fluid"></a>
     </div>
-  </footer><!-- End Footer -->
+    <div class="social-links">
+      <?php
+      foreach ($footer['social_links'] as $socialLink) {
+        echo '<a href="' . $socialLink['url'] . '" class="' . $socialLink['icon'] . '"></a>';
+      }
+      ?>
+    </div>
+    <div class="additional-links">
+      <ul>
+        <?php
+        foreach ($footer['additional_links'] as $additionalLink) {
+          echo '<li><b><a href="' . $additionalLink['url'] . '">' . $additionalLink['label'] . '</a></b></li>';
+        }
+        ?>
+      </ul>
+    </div>
+    <div class="copyright">
+      <?php echo $footer['copyright']; ?>
+    </div>
+    <div class="credits">
+      <?php echo $footer['credits']; ?>
+    </div>
+  </div>
+</footer><!-- End Footer -->

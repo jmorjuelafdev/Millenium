@@ -33,14 +33,22 @@
   </a>
 
   <!-- ======= Top Bar ======= -->
-  <section id="topbar" class="d-flex align-items-center fixed-top
-      topbar-transparent">
-    <div class="container-fluid container-xl d-flex align-items-center
-        justify-content-center justify-content-lg-start">
-      <i class="bi bi-phone d-flex align-items-center"><span>+57 000 0000000</span></i>
-      <i class="bi bi-clock ms-4 d-none d-lg-flex align-items-center"><span>Lunes
-          a sábado: 9:00 AM - 7:00 PM / Domingos y festivos: 10:00 AM - 5:00
-          PM</span></i>
+  <section id="topbar" class="d-flex align-items-center fixed-top topbar-transparent">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-center justify-content-lg-start">
+      <?php
+      // Cargar el contenido del archivo JSON
+      $jsonData = file_get_contents('assets/json/pagina.json');
+
+      // Decodificar el contenido JSON en un array asociativo
+      $data = json_decode($jsonData, true);
+
+      $phone = $data['top_bar']['phone'];
+      $weekdays = $data['top_bar']['schedule']['weekdays'];
+      $weekends = $data['top_bar']['schedule']['weekends'];
+      ?>
+
+      <i class="bi bi-phone d-flex align-items-center"><span><?php echo $phone; ?></span></i>
+      <i class="bi bi-clock ms-4 d-none d-lg-flex align-items-center"><span><?php echo $weekdays; ?> / <?php echo $weekends; ?></span></i>
     </div>
   </section>
 
@@ -74,83 +82,36 @@
     </div>
   </header><!-- End Header -->
 
+  <?php
+  // Obtener los slides del array asociativo
+  $slides = $data['slides'];
+  ?>
+
   <!-- ======= Hero Section ======= -->
   <section id="hero">
     <div class="hero-container">
-      <div id="heroCarousel" data-bs-interval="5000" class="carousel slide
-          carousel-fade" data-bs-ride="carousel">
+      <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
 
         <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
         <div class="carousel-inner" role="listbox">
 
-          <!-- Slide 1 -->
-          <div class="carousel-item active" style="background-image:
-              url(assets/img/slide/slide-1.jpg);">
-            <div class="carousel-container">
-              <div class="carousel-content">
-                <h2 class="animate__animated animate__fadeInDown">Millenium</h2>
-                <h3 class="animate__animated animate__fadeInDown"><span>Peluquería</span></h3>
-                <p class="animate__animated animate__fadeInUp">Ut velit est
-                  quam dolor ad a aliquid qui aliquid. Sequi ea ut et est
-                  quaerat sequi nihil ut aliquam. Occaecati alias dolorem
-                  mollitia ut. Similique ea voluptatem. Esse doloremque
-                  accusamus repellendus deleniti vel. Minus et tempore modi
-                  architecto.</p>
-                <div>
-                  <a href="#menu" class="btn-menu animate__animated
-                      animate__fadeInUp scrollto">Nuestros precios</a>
-                  <a href="#reserva" class="btn-book animate__animated
-                      animate__fadeInUp scrollto">Reservar cita</a>
+          <?php foreach ($slides as $index => $slide) : ?>
+            <div class="carousel-item <?php echo ($index === 0) ? 'active' : ''; ?>" style="background-image: url(<?php echo $slide['image']; ?>);">
+              <div class="carousel-container">
+                <div class="carousel-content">
+                  <h2 class="animate__animated animate__fadeInDown"><?php echo $slide['title']; ?></h2>
+                  <?php if (isset($slide['subtitle'])) : ?>
+                    <h3 class="animate__animated animate__fadeInDown"><span><?php echo $slide['subtitle']; ?></span></h3>
+                  <?php endif; ?>
+                  <p class="animate__animated animate__fadeInUp"><?php echo $slide['content']; ?></p>
+                  <div>
+                    <a href="<?php echo $slide['button1_link']; ?>" class="btn-menu animate__animated animate__fadeInUp scrollto"><?php echo $slide['button1_text']; ?></a>
+                    <a href="<?php echo $slide['button2_link']; ?>" class="btn-book animate__animated animate__fadeInUp scrollto"><?php echo $slide['button2_text']; ?></a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-
-          <!-- Slide 2 -->
-          <div class="carousel-item" style="background-image:
-              url(assets/img/slide/slide-2.jpg);">
-            <div class="carousel-container">
-              <div class="carousel-content">
-                <h2 class="animate__animated animate__fadeInDown">Cuidar de sí
-                  mismo no es un gasto, es una inversión</h2>
-                <p class="animate__animated animate__fadeInUp">Ut velit est
-                  quam dolor ad a aliquid qui aliquid. Sequi ea ut et est
-                  quaerat sequi nihil ut aliquam. Occaecati alias dolorem
-                  mollitia ut. Similique ea voluptatem. Esse doloremque
-                  accusamus repellendus deleniti vel. Minus et tempore modi
-                  architecto.</p>
-                <div>
-                  <a href="#menu" class="btn-menu animate__animated
-                      animate__fadeInUp scrollto">Nuestros precios</a>
-                  <a href="#reserva" class="btn-book animate__animated
-                      animate__fadeInUp scrollto">Reservar una cita</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Slide 3 -->
-          <div class="carousel-item" style="background-image:
-              url(assets/img/slide/slide-3.jpg);">
-            <div class="carousel-container">
-              <div class="carousel-content">
-                <h2 class="animate__animated animate__fadeInDown">Trabajamos
-                  para resaltar tu belleza</h2>
-                <p class="animate__animated animate__fadeInUp">Ut velit est
-                  quam dolor ad a aliquid qui aliquid. Sequi ea ut et est
-                  quaerat sequi nihil ut aliquam. Occaecati alias dolorem
-                  mollitia ut. Similique ea voluptatem. Esse doloremque
-                  accusamus repellendus deleniti vel. Minus et tempore modi
-                  architecto.</p>
-                <div>
-                  <a href="#menu" class="btn-menu animate__animated
-                      animate__fadeInUp scrollto">Nuestros precios</a>
-                  <a href="#reserva" class="btn-book animate__animated
-                      animate__fadeInUp scrollto">Reservar una cita</a>
-                </div>
-              </div>
-            </div>
-          </div>
+          <?php endforeach; ?>
 
         </div>
 
@@ -166,57 +127,36 @@
     </div>
   </section><!-- End Hero -->
 
+
   <main id="main">
 
-    <!-- ======= Nosotros Section ======= -->
+    <!-- ======= About Us Section ======= -->
     <section id="nosotros" class="nosotros">
-      <div class="container-fluid">
+      <div class="container" data-aos="fade-up">
 
-        <div class="row">
-
-          <div class="col-lg-5 align-items-stretch video-box" style='background-image: url(" assets/img/nosotros.jpg");'>
-          </div>
-
-          <div class="col-lg-7 d-flex flex-column justify-content-center
-              align-items-stretch">
-
-            <div class="content">
-              <h3><strong>Quienes somos</strong></h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Duis aute irure dolor in reprehenderit
-              </p>
-              <p class="fst-italic">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                do eiusmod tempor incididunt ut labore et dolore
-                magna aliqua.
-              </p>
-              <ul>
-                <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut
-                  aliquip ex ea commodo consequat.</li>
-                <li><i class="bx bx-check-double"></i> Duis aute irure dolor
-                  in reprehenderit in voluptate velit.</li>
-                <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut
-                  aliquip ex ea commodo consequat. Duis aute irure dolor in
-                  reprehenderit in voluptate trideta storacalaperda mastiro
-                  dolore eu fugiat nulla pariatur.</li>
-              </ul>
-              <p>
-                Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                aute irure dolor in reprehenderit in voluptate
-                velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                sint occaecat cupidatat non proident, sunt in
-                culpa qui officia deserunt mollit anim id est laborum
-              </p>
-            </div>
-
-          </div>
-
+        <?php
+        // Acceder a la propiedad "nosotros"
+        $nosotros = $data['nosotros'];
+        ?>
+        <div class="section-title">
+          <h2><?php echo $nosotros['title']; ?></h2>
+          <p><?php echo $nosotros['description']; ?></p>
         </div>
 
+        <div class="row">
+          <div class="col-lg-6" data-aos="fade-right">
+            <img src="<?php echo $nosotros['image']; ?>" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0 content" data-aos="fade-left">
+            <ul>
+              <?php foreach ($nosotros['features'] as $feature) : ?>
+                <li><i class="bi bi-check-circle"></i> <?php echo $feature; ?></li>
+              <?php endforeach; ?>
+            </ul>
+          </div>
+        </div>
       </div>
-    </section><!-- End nosotros Section -->
+    </section><!-- End About Us Section -->
 
     <!-- ======= Servicios Section ======= -->
     <section id="servicios" class="servicios servicios">
@@ -224,90 +164,23 @@
 
         <div class="section-title">
           <h2>Servicios</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur
-            ex
-            aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos
-            quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia
-            fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p><?php echo $data['servicios_intro']; ?></p>
         </div>
 
         <div class="row">
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="100">
-            <div class="icon"><img src="assets/img/icons/icon-1.png"></div>
-            <h4 class="title">Corte de cabello</h4>
-            <p class="description">Voluptatum deleniti atque corrupti quos
-              dolores et quas molestias excepturi sint occaecati cupiditate
-              non provident</p>
-          </div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="200">
-            <div class="icon"><img src="assets/img/icons/icon-2.png"></div>
-            <h4 class="title">Barbería</h4>
-            <p class="description">Minim veniam, quis nostrud exercitation
-              ullamco laboris nisi ut aliquip ex ea commodo consequat tarad
-              limino ata</p>
-          </div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="300">
-            <div class="icon"><img src="assets/img/icons/icon-3.png"></div>
-            <h4 class="title">Blower</h4>
-            <p class="description">Duis aute irure dolor in reprehenderit in
-              voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
-          </div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="100">
-            <div class="icon"><img src="assets/img/icons/icon-4.png"></div>
-            <h4 class="title">Tinturado</h4>
-            <p class="description">Excepteur sint occaecat cupidatat non
-              proident, sunt in culpa qui officia deserunt mollit anim id est
-              laborum</p>
-          </div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="200">
-            <div class="icon"><img src="assets/img/icons/icon-5.png"></div>
-            <h4 class="title">Peinados</h4>
-            <p class="description">At vero eos et accusamus et iusto odio
-              dignissimos ducimus qui blanditiis praesentium voluptatum
-              deleniti atque</p>
-          </div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="300">
-            <div class="icon"><img src="assets/img/icons/icon-6.png"></div>
-            <h4 class="title">Maquillaje</h4>
-            <p class="description">Et harum quidem rerum facilis est et
-              expedita distinctio. Nam libero tempore, cum soluta nobis est
-              eligendi</p>
-          </div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="300">
-            <div class="icon"><img src="assets/img/icons/icon-7.png"></div>
-            <h4 class="title">Uñas</h4>
-            <p class="description">Et harum quidem rerum facilis est et
-              expedita distinctio. Nam libero tempore, cum soluta nobis est
-              eligendi</p>
-          </div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="300">
-            <div class="icon"><img src="assets/img/icons/icon-8.png"></div>
-            <h4 class="title">Depilación</h4>
-            <p class="description">Et harum quidem rerum facilis est et
-              expedita distinctio. Nam libero tempore, cum soluta nobis est
-              eligendi</p>
-          </div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="300">
-            <div class="icon"><img src="assets/img/icons/icon-9.png"></div>
-            <h4 class="title">Limpieza facial</h4>
-            <p class="description">Et harum quidem rerum facilis est et
-              expedita distinctio. Nam libero tempore, cum soluta nobis est
-              eligendi</p>
-          </div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="300">
-            <div class="icon"><img src="assets/img/icons/icon-10.png"></div>
-            <h4 class="title">Kids</h4>
-            <p class="description">Et harum quidem rerum facilis est et
-              expedita distinctio. Nam libero tempore, cum soluta nobis est
-              eligendi</p>
-          </div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="300">
-            <div class="icon"><img src="assets/img/icons/icon-11.png"></div>
-            <h4 class="title">Pestañas</h4>
-            <p class="description">Et harum quidem rerum facilis est et
-              expedita distinctio. Nam libero tempore, cum soluta nobis est
-              eligendi</p>
-          </div>
+          <?php
+          // Acceder a la propiedad "servicios"
+          $servicios = $data['servicios'];
+
+          // Iterar sobre cada servicio y generar el código HTML dinámicamente
+          foreach ($servicios as $servicio) :
+          ?>
+            <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="<?php echo $servicio['delay']; ?>">
+              <div class="icon"><img src="<?php echo $servicio['icon']; ?>"></div>
+              <h4 class="title"><?php echo $servicio['title']; ?></h4>
+              <p class="description"><?php echo $servicio['description']; ?></p>
+            </div>
+          <?php endforeach; ?>
         </div>
 
       </div>
@@ -336,425 +209,63 @@
         </div>
 
         <div class="row menu-container">
-
-          <div class="col-lg-6 menu-item filter-barberia">
-            <div class="menu-content">
-              <p>Afeitado</p><span>$0.00</span>
-            </div>
-            <div class="menu-ingredients">
-              Incluimos un tratamiento, de cremas y balsamos que cuidan tu
-              piel.
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-barberia">
-            <div class="menu-content">
-              <p>Corte barba</p><span>$0.00</span>
-            </div>
-            <div class="menu-ingredients">
-              Nos ajustamos a tu barba, te damos los mejores consejos
-              posibles.
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-barberia">
-            <div class="menu-content">
-              <p>Corte barba con cuchilla</p><span>$0.00</span>
-            </div>
-            <div class="menu-ingredients">
-              Nos ajustamos a tu barba, te damos los mejores consejos
-              posibles.
-            </div>
-          </div>
-
-
-          <div class="col-lg-6 menu-item filter-barberia">
-            <div class="menu-content">
-              <p>Limpieza facial hombre</p><span>$0.00</span>
-            </div>
-            <div class="menu-ingredients">
-              Aplicamos los mejores tratamientos, para cuidar tu piel y
-              humectarla
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-barberia">
-            <div class="menu-content">
-              <p>Corte clásico de cabello hombre</p><span>$0.00</span>
-            </div>
-            <div class="menu-ingredients">
-              Lorem, deren, trataro, filede, nerada
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-barberia">
-            <div class="menu-content">
-              <p>Corte con cuchilla de cabello hombre</p><span>$0.00</span>
-            </div>
-            <div class="menu-ingredients">
-              Lorem, deren, trataro, filede, nerada
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-barberia">
-            <div class="menu-content">
-              <p>Corte y barba</p><span>$0.00</span>
-            </div>
-            <div class="menu-ingredients">
-              Lorem, deren, trataro, filede, nerada
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-barberia">
-            <div class="menu-content">
-              <p>Tinturados para hombre</p><span>$0.00</span>
-            </div>
-            <div class="menu-ingredients">
-              Precio varía según volumen del cabello y cantidad de color
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-kids">
-            <div class="menu-content">
-              <p>Corte de cabello niños</p><span>$0.00</span>
-            </div>
-            <div class="menu-ingredients">
-              Ut possimus qui ut temporibus culpa velit eveniet modi omnis est
-              adipisci expedita at voluptas atque vitae autem.
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-mujer">
-            <div class="menu-content">
-              <p>Corte de cabello mujer</p><span>$0.00</span>
-            </div>
-            <div class="menu-ingredients">
-              Ut possimus qui ut temporibus culpa velit eveniet modi omnis est
-              adipisci expedita at voluptas atque vitae autem.
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-kids">
-            <div class="menu-content">
-              <p>Corte de cabello niñas</p><span>$0.00</span>
-            </div>
-            <div class="menu-ingredients">
-              Lorem, deren, trataro, filede, nerada
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-mujer">
-            <div class="menu-content">
-              <p>Cepillados desde...</p><span>$0.00</span>
-            </div>
-            <div class="menu-ingredients">
-              Precio varía según volumen del cabello
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-mujer">
-            <div class="menu-content">
-              <p>Tinturados desde</p><span>$0.00</span>
-            </div>
-            <div class="menu-ingredients">
-              Precio varía según volumen del cabello y cantidad de color
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-mujer">
-            <div class="menu-content">
-              <p>Mechas desde</p><span>$0.00</span>
-            </div>
-            <div class="menu-ingredients">
-              Precio varía según volumen del cabello y cantidad de color
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-mujer">
-            <div class="menu-content">
-              <p>Keratinas</p><span>$0.00</span>
-            </div>
-            <div class="menu-ingredients">
-              Ut possimus qui ut temporibus culpa velit eveniet modi omnis est
-              adipisci
-              expedita at voluptas atque vitae autem.
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-otros">
-            <div class="menu-content">
-              <p>Lavado de cabello</p><span>$0.00</span>
-            </div>
-            <div class="menu-ingredients">
-              Ut possimus qui ut temporibus culpa velit eveniet modi omnis est
-              adipisci
-              expedita at voluptas atque vitae autem.
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-otros">
-            <div class="menu-content">
-              <p>Lavado de cabello con aplicación de cualquier tratamiento</p><span>$0.00</span>
-            </div>
-            <div class="menu-ingredients">
-              Ut possimus qui ut temporibus culpa velit eveniet modi omnis est
-              adipisci
-              expedita at voluptas atque vitae autem.
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-mujer">
-            <div class="menu-content">
-              <p>Peinado mujer</p><span>$0.00</span>
-            </div>
-            <div class="menu-ingredients">
-              Ut possimus qui ut temporibus culpa velit eveniet modi omnis est
-              adipisci
-              expedita at voluptas atque vitae autem.
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-kids">
-            <div class="menu-content">
-              <p>Peinado niñas</p><span>$0.00</span>
-            </div>
-            <div class="menu-ingredients">
-              Ut possimus qui ut temporibus culpa velit eveniet modi omnis est
-              adipisci
-              expedita at voluptas atque vitae autem.
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-piel">
-            <div class="menu-content">
-              <p>Maquillaje</p><span>$0.00</span>
-            </div>
-            <div class="menu-ingredients">
-              Ut possimus qui ut temporibus culpa velit eveniet modi omnis est
-              adipisci
-              expedita at voluptas atque vitae autem.
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-piel">
-            <div class="menu-content">
-              <p>Maquillaje halloween </p><span>$0.00</span>
-            </div>
-            <div class="menu-ingredients">
-              Solo en temporada
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-piel">
-            <div class="menu-content">
-              <p>Depilación cejas y rostro</p><span>$0.00</span>
-            </div>
-            <div class="menu-ingredients">
-              Ut possimus qui ut temporibus culpa velit eveniet modi omnis est
-              adipisci
-              expedita at voluptas atque vitae autem.
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-piel">
-            <div class="menu-content">
-              <p>Pestañas desde...</p><span>$0.00</span>
-            </div>
-            <div class="menu-ingredients">
-              Ut possimus qui ut temporibus culpa velit eveniet modi omnis est
-              adipisci
-              expedita at voluptas atque vitae autem.
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-piel">
-            <div class="menu-content">
-              <p>Limpieza facial mujer</p><span>$0.00</span>
-            </div>
-            <div class="menu-ingredients">
-              Aplicamos los mejores tratamientos, para cuidar tu piel y
-              humectarla
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-uñas">
-            <div class="menu-content">
-              <p>Manicure</p><span>$0.00</span>
-            </div>
-            <div class="menu-ingredients">
-              Ut possimus qui ut temporibus culpa velit eveniet modi omnis est
-              adipisci
-              expedita at voluptas atque vitae autem.
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-uñas">
-            <div class="menu-content">
-              <p>Pedicure</p><span>$0.00</span>
-            </div>
-            <div class="menu-ingredients">
-              Ut possimus qui ut temporibus culpa velit eveniet modi omnis est
-              adipisci
-              expedita at voluptas atque vitae autem.
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-uñas">
-            <div class="menu-content">
-              <p>Uñas acrílicas</p><span>$0.00</span>
-            </div>
-            <div class="menu-ingredients">
-              Ut possimus qui ut temporibus culpa velit eveniet modi omnis est
-              adipisci
-              expedita at voluptas atque vitae autem.
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-uñas">
-            <div class="menu-content">
-              <p>Baño en acrílico</p><span>$0.00</span>
-            </div>
-            <div class="menu-ingredients">
-              Ut possimus qui ut temporibus culpa velit eveniet modi omnis est
-              adipisci
-              expedita at voluptas atque vitae autem.
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-uñas">
-            <div class="menu-content">
-              <p>Semipermanentes</p><span>$0.00</span>
-            </div>
-            <div class="menu-ingredients">
-              Ut possimus qui ut temporibus culpa velit eveniet modi omnis est
-              adipisci
-              expedita at voluptas atque vitae autem.
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-piel">
-            <div class="menu-content">
-              <p>Depilación pierna completa</p><span>$0.00</span>
-            </div>
-            <div class="menu-ingredients">
-              Ut possimus qui ut temporibus culpa velit eveniet modi omnis est
-              adipisci
-              expedita at voluptas atque vitae autem.
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-piel">
-            <div class="menu-content">
-              <p>Depilación media pierna</p><span>$0.00</span>
-            </div>
-            <div class="menu-ingredients">
-              Ut possimus qui ut temporibus culpa velit eveniet modi omnis est
-              adipisci
-              expedita at voluptas atque vitae autem.
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-piel">
-            <div class="menu-content">
-              <p>Depilación bikini</p><span>$0.00</span>
-            </div>
-            <div class="menu-ingredients">
-              Ut possimus qui ut temporibus culpa velit eveniet modi omnis est
-              adipisci
-              expedita at voluptas atque vitae autem.
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-piel">
-            <div class="menu-content">
-              <p>Depilación axilas</p><span>$0.00</span>
-            </div>
-            <div class="menu-ingredients">
-              Ut possimus qui ut temporibus culpa velit eveniet modi omnis est
-              adipisci
-              expedita at voluptas atque vitae autem.
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-piel">
-            <div class="menu-content">
-              <p>Depilación hombre</p><span>$0.00</span>
-            </div>
-            <div class="menu-ingredients">
-              Ut possimus qui ut temporibus culpa velit eveniet modi omnis est
-              adipisci
-              expedita at voluptas atque vitae autem.
-            </div>
-          </div>
-
+          <?php
+          // Generar elementos HTML para cada servicio por categoría
+          foreach ($data['categorias'] as $categoria) {
+            foreach ($categoria['elementos'] as $elemento) {
+              echo '<div class="col-lg-6 menu-item filter-' . strtolower($categoria['nombre']) . '">';
+              echo '<div class="menu-content">';
+              echo '<p>' . $elemento['nombre'] . '</p><span>' . $elemento['precio'] . '</span>';
+              echo '</div>';
+              echo '<div class="menu-ingredients">';
+              echo $elemento['servicio'];
+              echo '</div>';
+              echo '</div>';
+            }
+          }
+          ?>
         </div>
-
       </div>
-    </section><!-- End Menu Section -->
+    </section>
 
     <!-- ======= Peluqueros Section ======= -->
     <section id="peluqueros" class="peluqueros">
       <div class="container">
         <div class="section-title">
           <h2>Nuestros estilistas</h2>
-          <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est
-            adipisci expedita at voluptas atque vitae autem.</p>
+          <p><?php echo $data['peluqueros_intro']; ?></p>
         </div>
 
         <div class="row">
+          <?php
+          // Obtener el objeto "peluqueros"
+          $peluqueros = $data['peluqueros'];
 
-          <div class="col-lg-4 col-md-6">
-            <div class="member">
-              <div class="pic"><img src="assets/img/peluqueros/peluqueros-1.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Walter Díaz</h4>
-                <span>Estilista-barbero</span>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
+          // Generar elementos HTML para cada estilista
+          foreach ($peluqueros as $estilista) {
+            echo '<div class="col-lg-4 col-md-6">';
+            echo '<div class="member">';
+            echo '<div class="pic"><img src="' . $estilista['imagen'] . '" class="img-fluid" alt=""></div>';
+            echo '<div class="member-info">';
+            echo '<h4>' . $estilista['nombre'] . '</h4>';
+            echo '<span>' . $estilista['cargo'] . '</span>';
+            echo '<div class="social">';
 
-          <div class="col-lg-4 col-md-6">
-            <div class="member">
-              <div class="pic"><img src="assets/img/peluqueros/peluqueros-2.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Sara Castaño</h4>
-                <span>Estilista</span>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6">
-            <div class="member">
-              <div class="pic"><img src="assets/img/peluqueros/peluqueros-3.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Ana María García</h4>
-                <span>Manicurista</span>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
+            // Generar enlaces a las redes sociales
+            foreach ($estilista['redes_sociales'] as $red_social) {
+              echo '<a href="' . $red_social['enlace'] . '"><i class="bi bi-' . $red_social['icono'] . '"></i></a>';
+            }
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';
+          }
+          ?>
         </div>
-
       </div>
-    </section><!-- End peluqueros Section -->
+    </section>
+    <!-- End peluqueros Section -->
+
 
     <!-- ======= Reserva Section ======= -->
     <section id="reserva" class="reserva">
@@ -770,98 +281,50 @@
     </section><!-- End reserva Section -->
 
     <!-- ======= Gallery Section ======= -->
-    <section id="gallery" class="gallery">
-      <div class="container-fluid">
+    <?php
+    // Obtener el objeto "gallery" del JSON
+    $gallery = $data['gallery'];
 
-        <div class="section-title">
-          <h2>Nuestros clientes felices</h2>
-          <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est
-            adipisci expedita at voluptas atque vitae autem.</p>
-        </div>
+    // Generar elementos HTML para la sección de la galería
+    echo '<section id="gallery" class="gallery">';
+    echo '<div class="container-fluid">';
+    echo '<div class="section-title">';
+    echo '<h2>' . $gallery['title'] . '</h2>';
+    echo '<p>' . $gallery['description'] . '</p>';
+    echo '</div>';
+    echo '<div class="row g-0">';
 
-        <div class="row g-0">
+    // Generar elementos HTML para cada imagen de la galería
+    foreach ($gallery['images'] as $image) {
+      echo '<div class="col-lg-3 col-md-4">';
+      echo '<div class="gallery-item">';
+      echo '<a href="' . $image['url'] . '" class="gallery-lightbox">';
+      echo '<img src="' . $image['url'] . '" alt="' . $image['alt'] . '" class="img-fluid">';
+      echo '</a>';
+      echo '</div>';
+      echo '</div>';
+    }
 
-          <div class="col-lg-3 col-md-4">
-            <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-1.jpg" class="gallery-lightbox">
-                <img src="assets/img/gallery/gallery-1.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4">
-            <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-2.jpg" class="gallery-lightbox">
-                <img src="assets/img/gallery/gallery-2.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4">
-            <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-3.jpg" class="gallery-lightbox">
-                <img src="assets/img/gallery/gallery-3.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4">
-            <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-4.jpg" class="gallery-lightbox">
-                <img src="assets/img/gallery/gallery-4.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4">
-            <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-5.jpg" class="gallery-lightbox">
-                <img src="assets/img/gallery/gallery-5.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4">
-            <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-6.jpg" class="gallery-lightbox">
-                <img src="assets/img/gallery/gallery-6.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4">
-            <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-7.jpg" class="gallery-lightbox">
-                <img src="assets/img/gallery/gallery-7.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4">
-            <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-8.jpg" class="gallery-lightbox">
-                <img src="assets/img/gallery/gallery-8.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
+    echo '</div>';
+    echo '</div>';
+    ?>
     </section><!-- End Gallery Section -->
 
 
-    <!-- ======= Contactenos Section ======= -->
+    <?php
+
+    // Obtener los datos de la sección 'contactenos'
+    $contactenos = $data['contactenos'];
+
+    ?>
+
     <section id="contactenos" class="contactenos">
       <div class="container">
 
         <div class="section-title">
-          <h2>Contactenos</h2>
+          <h2><?php echo $contactenos['title']; ?></h2>
         </div>
-        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur
-          ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam
-          quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.
-          Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        <p><?php echo $contactenos['description']; ?></p>
       </div>
 
       <div>
@@ -879,28 +342,32 @@
                 <div class="info-box">
                   <i class="fa-solid fa-location-dot"></i>
                   <h3>Dirección</h3>
-                  <p>Lorem ipsum dolor sit amet consectetur.</p>
+                  <p><?php echo $contactenos['address']; ?></p>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="info-box">
                   <i class="bx bx-envelope"></i>
                   <h3>Correo electrónico</h3>
-                  <p>lorem@example.com</p>
+                  <p><?php echo $contactenos['email']; ?></p>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="info-box mt-4">
                   <i class="bx bx-phone-call"></i>
                   <h3>Teléfonos</h3>
-                  <p>+57 601 0000000<br>+57 0000000000</p>
+                  <?php
+                  foreach ($contactenos['phone_numbers'] as $phone) {
+                    echo "<p>" . $phone . "</p>";
+                  }
+                  ?>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="info-box mt-4">
                   <i class="bx bxl-whatsapp"></i>
                   <h3>Atención al cliente</h3>
-                  <p>+57 000000000</p>
+                  <p><?php echo $contactenos['customer_service']; ?></p>
                 </div>
               </div>
             </div>
@@ -935,7 +402,8 @@
         </div>
 
       </div>
-    </section><!-- End Contactenos Section -->
+    </section>
+
 
   </main><!-- End #main -->
   <?php
