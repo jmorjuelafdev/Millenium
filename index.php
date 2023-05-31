@@ -299,7 +299,6 @@
     <!-- =============================== Menu Section ========================================================== -->
     <section id="menu" class="menu">
       <div class="container">
-
         <div class="section-title">
           <h2>Precios</h2>
         </div>
@@ -327,21 +326,25 @@
           // Verificar si se obtuvieron resultados
           if (mysqli_num_rows($result) > 0) {
             // Generar elementos HTML para cada servicio por categoría
+            $menuItems = ''; // Cadena de texto para almacenar los elementos del menú
+
             while ($row = mysqli_fetch_assoc($result)) {
               $categoria_nombre = $row['categoria_nombre'];
               $elemento_nombre = $row['elemento_nombre'];
               $elemento_precio = $row['elemento_precio'];
               $elemento_servicio = $row['elemento_servicio'];
 
-              echo '<div class="col-lg-6 menu-item filter-' . strtolower($categoria_nombre) . '">';
-              echo '<div class="menu-content">';
-              echo '<p>' . $elemento_nombre . '</p><span>' . $elemento_precio . '</span>';
-              echo '</div>';
-              echo '<div class="menu-ingredients">';
-              echo $elemento_servicio;
-              echo '</div>';
-              echo '</div>';
+              $menuItems .= '<div class="col-lg-6 menu-item filter-' . strtolower($categoria_nombre) . '">';
+              $menuItems .= '<div class="menu-content">';
+              $menuItems .= '<p>' . $elemento_nombre . '</p><span>' . $elemento_precio . '</span>';
+              $menuItems .= '</div>';
+              $menuItems .= '<div class="menu-ingredients">';
+              $menuItems .= $elemento_servicio;
+              $menuItems .= '</div>';
+              $menuItems .= '</div>';
             }
+
+            echo $menuItems; // Imprimir los elementos del menú
           } else {
             // No se encontraron resultados
             echo "No se encontraron precios disponibles.";
@@ -349,11 +352,11 @@
 
           // Liberar el resultado de la consulta
           mysqli_free_result($result);
-
           ?>
         </div>
       </div>
     </section>
+
     <!-- =============================== End Menu Section ========================================================== -->
 
     <!-- ================================ Peluqueros Section ========================================================= -->
@@ -372,15 +375,17 @@
 
           // Verificar si se obtuvieron resultados
           if (mysqli_num_rows($result) > 0) {
-            // Obtener los datos de los estilistas
+            // Generar elementos HTML para cada estilista
+            $estilistas = ''; // Cadena de texto para almacenar los estilistas
+
             while ($estilista = mysqli_fetch_assoc($result)) {
-              echo '<div class="col-lg-4 col-md-6">';
-              echo '<div class="member">';
-              echo '<div class="pic"><img src="' . $estilista['imagen'] . '" class="img-fluid" alt=""></div>';
-              echo '<div class="member-info">';
-              echo '<h4>' . $estilista['nombre'] . '</h4>';
-              echo '<span>' . $estilista['cargo'] . '</span>';
-              echo '<div class="social">';
+              $estilistas .= '<div class="col-lg-4 col-md-6">';
+              $estilistas .= '<div class="member">';
+              $estilistas .= '<div class="pic"><img src="' . $estilista['imagen'] . '" class="img-fluid" alt=""></div>';
+              $estilistas .= '<div class="member-info">';
+              $estilistas .= '<h4>' . $estilista['nombre'] . '</h4>';
+              $estilistas .= '<span>' . $estilista['cargo'] . '</span>';
+              $estilistas .= '<div class="social">';
 
               // Obtener las redes sociales del estilista
               $sqlRedes = "SELECT * FROM peluqueros_redes_sociales WHERE peluquero_id = " . $estilista['id'];
@@ -388,17 +393,19 @@
 
               // Generar enlaces a las redes sociales
               while ($redSocial = mysqli_fetch_assoc($resultRedes)) {
-                echo '<a href="' . $redSocial['enlace'] . '"><i class="bi bi-' . $redSocial['icono'] . '"></i></a>';
+                $estilistas .= '<a href="' . $redSocial['enlace'] . '"><i class="bi bi-' . $redSocial['icono'] . '"></i></a>';
               }
 
               // Liberar el resultado de la consulta de redes sociales
               mysqli_free_result($resultRedes);
 
-              echo '</div>';
-              echo '</div>';
-              echo '</div>';
-              echo '</div>';
+              $estilistas .= '</div>';
+              $estilistas .= '</div>';
+              $estilistas .= '</div>';
+              $estilistas .= '</div>';
             }
+
+            echo $estilistas; // Imprimir los estilistas
           } else {
             // No se encontraron estilistas
             echo "No se encontraron estilistas disponibles.";
@@ -410,6 +417,7 @@
         </div>
       </div>
     </section>
+
     <!-- ================================ End Peluqueros Section ========================================================= -->
 
 
@@ -442,29 +450,31 @@
       $sqlImages = "SELECT * FROM gallery_images";
       $resultImages = mysqli_query($conexion, $sqlImages);
 
-      // Generar elementos HTML para la sección de la galería
-      echo '<section id="gallery" class="gallery">';
-      echo '<div class="container-fluid">';
-      echo '<div class="section-title">';
-      echo '<h2>' . $gallery['title'] . '</h2>';
-      echo '<p>' . $gallery['description'] . '</p>';
-      echo '</div>';
-      echo '<div class="row g-0">';
+      // Construir elementos HTML para la sección de la galería
+      $gallerySection = '<section id="gallery" class="gallery">';
+      $gallerySection .= '<div class="container-fluid">';
+      $gallerySection .= '<div class="section-title">';
+      $gallerySection .= '<h2>' . $gallery['title'] . '</h2>';
+      $gallerySection .= '<p>' . $gallery['description'] . '</p>';
+      $gallerySection .= '</div>';
+      $gallerySection .= '<div class="row g-0">';
 
-      // Generar elementos HTML para cada imagen de la galería
+      // Construir elementos HTML para cada imagen de la galería
       while ($image = mysqli_fetch_assoc($resultImages)) {
-        echo '<div class="col-lg-3 col-md-4">';
-        echo '<div class="gallery-item">';
-        echo '<a href="' . $image['url'] . '" class="gallery-lightbox">';
-        echo '<img src="' . $image['url'] . '" alt="' . $image['alt'] . '" class="img-fluid">';
-        echo '</a>';
-        echo '</div>';
-        echo '</div>';
+        $gallerySection .= '<div class="col-lg-3 col-md-4">';
+        $gallerySection .= '<div class="gallery-item">';
+        $gallerySection .= '<a href="' . $image['url'] . '" class="gallery-lightbox">';
+        $gallerySection .= '<img src="' . $image['url'] . '" alt="' . $image['alt'] . '" class="img-fluid">';
+        $gallerySection .= '</a>';
+        $gallerySection .= '</div>';
+        $gallerySection .= '</div>';
       }
 
-      echo '</div>';
-      echo '</div>';
-      echo '</section>';
+      $gallerySection .= '</div>';
+      $gallerySection .= '</div>';
+      $gallerySection .= '</section>';
+
+      echo $gallerySection; // Imprimir la sección de la galería
 
       // Liberar el resultado de la consulta de imágenes
       mysqli_free_result($resultImages);
@@ -476,6 +486,7 @@
     // Liberar el resultado de la consulta de la galería
     mysqli_free_result($resultGallery);
     ?>
+
     <!-- ================================== End Gallery Section ============================================================== -->
 
 
@@ -567,12 +578,9 @@
                 <div class="text-center"><button type="submit">Enviar mensaje</button></div>
               </form>
             </div>
-
           </div>
-
         </div>
       </section>
-
     <?php
     } else {
       // No se encontraron datos de la tabla 'contactenos'
@@ -585,8 +593,7 @@
     // Cerrar la conexión
     mysqli_close($conexion);
     ?>
-
-
+    <!-- ================================== End Contactenos Section ============================================================== -->
 
   </main><!-- End #main -->
   <?php
