@@ -55,8 +55,8 @@
       "Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur."
     ]
   },
-  "servicios_intro": "Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas",
-  "servicios": [
+  "services_intro": "Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas",
+  "services": [
     {
       "icon": "assets/img/icons/icon-1.png",
       "title": "Corte de cabello",
@@ -124,8 +124,7 @@
       "delay": 300
     }
   ],
-  "titulo": "Precios",
-  "categorias": [
+  "precios": [
     {
       "nombre": "Barberia",
       "elementos": [
@@ -222,8 +221,8 @@
       ]
     }
   ],
-  "peluqueros_intro": "Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas",
-  "peluqueros": [
+  "peluqueros1_intro": "Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas",
+  "peluqueros1": [
     {
       "nombre": "Walter Díaz",
       "cargo": "Estilista-barbero",
