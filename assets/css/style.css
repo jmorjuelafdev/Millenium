@@ -15,7 +15,6 @@ a:hover {
   color: #8a6f05;
   text-decoration: none;
 }
-
 h1,
 h2,
 h3,
@@ -696,6 +695,17 @@ section {
   line-height: 24px;
   font-size: 14px;
 }
+.servicios-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* Para permitir que los elementos se envuelvan en varias líneas si es necesario */
+}
+
+.servicios-container .column {
+  width: 23.33%; /* Ajusta el ancho de las columnas según tus necesidades */
+  padding: 0 10px; /* Añade un espacio entre las columnas si lo deseas */
+}
+
 
 /*--------------------------------------------------------------
 # Menu Section
@@ -1333,11 +1343,11 @@ input[type="time"] {
   box-sizing: border-box;
 }
 .form-container1 {
-  margin-left: 15%;
-  margin-right: 15%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 /*--------------------------------------------------------------
-# Cta
+# Cta1
 --------------------------------------------------------------*/
 .cta1 {
   background: linear-gradient(rgba(39, 37, 34, 0.8), rgba(39, 37, 34, 0.8)),
@@ -1374,3 +1384,89 @@ input[type="time"] {
 .cta1 .cta1-btn:hover {
   border-color: #fff;
 }
+
+/*--------------------------------------------------------------
+# Cta2
+--------------------------------------------------------------*/
+.cta2 {
+  background: linear-gradient(rgba(39, 37, 34, 0.8), rgba(39, 37, 34, 0.8)),
+    url("../img/funcionarios.jpg") fixed center center;
+  background-size: cover;
+  padding: 60px 0;
+}
+.cta2 h3 {
+  color: #3a5743;
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+}
+.cta2 p {
+  color: #3b7080;
+}
+.cta2 .cta1-btn {
+  font-family: "Raleway", sans-serif;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 8px 28px;
+  border-radius: 25px;
+  transition: 0.5s;
+  margin-top: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  color: #fff;
+}
+.cta2 .cta1-btn:hover {
+  border-color: #fff;
+}
+.container2 {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ececec;
+  border-radius: 5px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+.container2 {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ececec;
+  border-radius: 5px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.form-group {
+  margin-bottom: 20px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.form-group button {
+  width: 100%;
+  padding: 10px;
+  background-color: #e2b808;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.logo-container{
+  padding: 0;
+  margin: 0;
+  max-height: 84px;
+}
+
+

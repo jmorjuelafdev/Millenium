@@ -89,6 +89,7 @@
         </div>
       </div>
     </section><!-- End Breadcrumbs Section -->
+
     <!-- ======= Cta Section ======= -->
     <section id="cta" class="cta">
       <div class="form-container" data-aos="fade-up" data-aos-duration="800">
@@ -102,41 +103,26 @@
             <br>
             <br>
             <div class="servicios-container">
-              <?php
-              // Conexión a la base de datos
-              include("includes/connect.php");
-              // Obtener servicios de la tabla "servicios"
-              $consulta_servicios = "SELECT * FROM servicios";
-              $result_servicios = mysqli_query($conexion, $consulta_servicios);
+              <div class="row">
+                <?php
+                // Conexión a la base de datos
+                include("includes/connect.php");
+                // Obtener servicios de la tabla "servicios"
+                $consulta_servicios = "SELECT * FROM servicios";
+                $result_servicios = mysqli_query($conexion, $consulta_servicios);
 
-              // Contador para controlar el número de servicios por columna
-              $contador = 0;
-
-              // Mostrar servicios como checkboxes en tres columnas
-              while ($row_servicio = mysqli_fetch_assoc($result_servicios)) {
-                // Iniciar una nueva columna después de mostrar 3 servicios
-                if ($contador % 3 == 0) {
-                  echo '<div class="column">';
-                }
-
-                echo '<label class="form-check-label">';
-                echo '<p class= list_servicios><input class="form-check-input" type="checkbox" name="servicios[]" value="' . $row_servicio['nombre'] . '">' . $row_servicio['nombre'] . ' (' . $row_servicio['duracion'] . 'min)............' . '<b>$' . $row_servicio['precio'] . '</b></p></label><br>';
-
-                // Cerrar la columna después de mostrar 3 servicios
-                if ($contador % 3 == 2) {
+                // Mostrar servicios como checkboxes en columnas responsivas
+                while ($row_servicio = mysqli_fetch_assoc($result_servicios)) {
+                  echo '<div class="col-sm-6 col-md-4 col-lg-3">';
+                  echo '<label class="form-check-label">';
+                  echo '<p class="list_servicios"><input class="form-check-input" type="checkbox" name="servicios[]" value="' . $row_servicio['elemento_nombre'] . '">' . $row_servicio['elemento_nombre'] . ' (' . $row_servicio['duracion'] . 'min)............' . '<b>$' . $row_servicio['elemento_precio'] . '</b></p>';
+                  echo '</label>';
                   echo '</div>';
                 }
-
-                $contador++;
-              }
-
-              // Cerrar la última columna si no se ha cerrado previamente
-              if ($contador % 3 != 0) {
-                echo '</div>';
-              }
-              // Cerrar la conexión a la base de datos
-              ?>
+                ?>
+              </div>
             </div>
+            <br>
           </div>
           <br>
           <div class="formulario" data-aos="fade-up" data-aos-duration="800">
@@ -145,33 +131,44 @@
             <h3 class="titulo" data-aos="fade-up" data-aos-duration="800">2. Escoge el peluquero:</h3>
             <br>
             <br>
-            <div class="peluqueros-container">
-              <?php
-              // Obtener peluqueros de la tabla "peluqueros"
-              $consulta_peluqueros = "SELECT * FROM peluqueros";
-              $result_peluqueros = mysqli_query($conexion, $consulta_peluqueros);
 
-              // Mostrar peluqueros como checkboxes
-              while ($row_peluquero = mysqli_fetch_assoc($result_peluqueros)) {
-                // Iniciar una nueva columna después de mostrar 3 servicios
-                if ($contador % 3 == 0) {
-                  echo '<div class="column">';
+            <div class="peluqueros-container">
+              <div class="row">
+                <?php
+                // Obtener peluqueros de la tabla "peluqueros"
+                $consulta_peluqueros = "SELECT * FROM peluqueros";
+                $result_peluqueros = mysqli_query($conexion, $consulta_peluqueros);
+
+                // Contador para controlar el número de peluqueros por columna
+                $contador = 0;
+
+                // Mostrar peluqueros como checkboxes en tres columnas
+                while ($row_peluquero = mysqli_fetch_assoc($result_peluqueros)) {
+                  // Iniciar una nueva columna después de mostrar 3 peluqueros
+                  if ($contador % 3 == 0) {
+                    echo '<div class="col-sm-4">';
+                  }
+
+                  echo '<label class="form-check-label">';
+                  echo '<p class="list_peluqueros"><input class="form-check-input" type="checkbox" name="peluqueros[]" value="' . $row_peluquero['nombre'] . '">' . $row_peluquero['nombre'] . ' <b>(' . $row_peluquero['especialidad'] . ')</b></p>';
+                  echo '</label>';
+
+                  // Cerrar la columna después de mostrar 3 peluqueros
+                  if ($contador % 3 == 2) {
+                    echo '</div>';
+                  }
+                  $contador++;
                 }
-                echo '<p class= list_peluqueros><input class="form-check-input" type="checkbox" name="peluqueros[]" value="' . $row_peluquero['nombre'] . '">' . $row_peluquero['nombre'] . '<b> (' . $row_peluquero['especialidad'] . ')' . '</b></p></label><br>';
-                // Cerrar la columna después de mostrar 3 servicios
-                if ($contador % 3 == 2) {
+
+                // Cerrar la última columna si no se ha cerrado previamente
+                if ($contador % 3 != 0) {
                   echo '</div>';
                 }
-
-                $contador++;
-              }
-
-              // Cerrar la última columna si no se ha cerrado previamente
-              if ($contador % 3 != 0) {
-                echo '</div>';
-              }
-              ?>
+                ?>
+              </div>
             </div>
+            <br>
+            <br>
           </div>
           <br>
           <div class="formulario" data-aos="fade-up" data-aos-duration="800">
@@ -182,9 +179,10 @@
             <br>
             <label for="fecha">Fecha:</label>
             <input type="date" name="fecha" id="fecha" required><br>
-
             <label for="hora">Hora:</label>
             <input type="time" name="hora" id="hora" required><br>
+            <br>
+            <br>
             <br>
           </div>
           <br>
@@ -216,7 +214,7 @@
       </div>
     </section><!-- End Cta Section -->
   </main><!-- End #main -->
-  
+
   <?php
   include('includes/footer.php') //Footer
   ?>

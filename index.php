@@ -320,7 +320,7 @@
         <div class="row menu-container">
           <?php
           // Realizar la consulta SQL para obtener los precios
-          $sql = "SELECT * FROM precios";
+          $sql = "SELECT * FROM servicios";
           $result = mysqli_query($conexion, $sql);
 
           // Verificar si se obtuvieron resultados

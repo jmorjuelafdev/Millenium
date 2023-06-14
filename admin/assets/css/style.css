@@ -1,0 +1,210 @@
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+/*--------------------------------------------------------------
+# Login
+--------------------------------------------------------------*/
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url("../img/funcionarios.jpg");
+  background-size: cover;
+  padding: 60px 0;
+}
+.custom-card {
+  max-width: 400px; /* Ajusta el valor según tus necesidades */
+  margin: 0 auto;
+}
+.logo_login {
+  width: 300px; /* Ajusta el ancho según el tamaño de tu logo */
+}
+a {
+  text-decoration: none;
+  color: #e2b808;
+}
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+body {
+  font-family: "Poppins", sans-serif;
+  color: #444444;
+}
+
+a {
+  text-decoration: none;
+  color: #e2b808;
+}
+
+a:hover {
+  color: #8a6f05;
+  text-decoration: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Satisfy", sans-serif;
+}
+
+a:hover {
+  color: #8a6f05;
+  text-decoration: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Satisfy", sans-serif;
+}
+/*--------------------------------------------------------------
+# Sections General
+--------------------------------------------------------------*/
+section {
+  padding: 60px 0;
+}
+
+.section-bg {
+  background-color: white;
+}
+
+.section-title {
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.section-title h2 {
+  margin: 15px 0 0 0;
+  font-size: 32px;
+  font-weight: 700;
+  color: #3a5743;
+}
+
+.section-title h2 span {
+  color: #e2b808;
+}
+
+.section-title p {
+  margin: 15px auto 0 auto;
+  font-weight: 300;
+}
+
+@media (min-width: 1024px) {
+  .section-title p {
+    width: 50%;
+  }
+}
+@media (min-width: 1024px) {
+  .login {
+    background-attachment: fixed;
+  }
+}
+@-webkit-keyframes animate-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes animate-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.btn-primary {
+  background-color: #e2b808;
+  border: 1px solid #ccc;
+}
+.btn-primary:hover {
+  background-color: #8a6f05;
+  border: 1px solid #ccc;
+}
+.btn-primary:active {
+  background-color: #8a6f05;
+  border: 1px solid #ccc;
+}
+/* Estilos generales */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Estilos para los botones de las tabs */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Cambiar el color de fondo de los botones al pasar el cursor */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Estilo para la tab activa */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Contenido de las tabs */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+.logo_header {
+  width: 200px; /* Ajusta el ancho según el tamaño de tu logo */
+  height: auto;
+}
+.custom-color {
+  background-color: rgba(58, 87, 67, 0.85);/* Reemplaza el valor hexadecimal con tu color personalizado */
+}

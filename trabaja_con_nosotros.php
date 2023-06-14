@@ -27,6 +27,7 @@
   <link href="assets/css/style.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 </head>
+
 <body>
   <a href="https://wa.me/573162248270?" class="whatsapp" target="_blank"> <i class="fa-brands fa-whatsapp"></i>
     <h6>Contáctenos</h6>
@@ -94,7 +95,7 @@
           <div class="formulario" data-aos="fade-up" role="form" data-aos-duration="800">
             <br>
             <br>
-            <h3 class="titulo" data-aos="fade-up" data-aos-duration="800">¿Estás interesado(a) en trabajar <br>con nuestro equipo de expertos en belleza? <br>¡Escríbenos!</h3>
+            <h3 class="titulo" data-aos="fade-up" data-aos-duration="800">¿Estás interesado(a) en trabajar con nuestro equipo de expertos en belleza? ¡Escríbenos!</h3>
             <br>
             <br>
             <div class="col-md-8 offset-md-2">
@@ -114,7 +115,7 @@
                   <input type="text" class="form-control" name="phone" id="phone" placeholder="Número telefónico" style="width: 100%;">
                 </div>
                 <div class="col-md-6 form-group">
-                  <label for="phone">Identificación</label>
+                  <label for="identification">Identificación</label>
                   <input type="text" class="form-control" name="identification" id="identification" placeholder="Identificación" style="width: 100%;">
                 </div>
               </div>
@@ -124,22 +125,24 @@
               </div>
               <div class="form-group mt-3">
                 <label for="message">Mensaje</label>
-                <textarea class="form-control" name="message" rows="5" placeholder="Mensaje" required></textarea>
+                <textarea class="form-control" name="message" id="message" rows="5" placeholder="Mensaje" required></textarea>
               </div>
               <div class="form-group mt-3">
                 <label for="adjunto">Adjunta tu hoja de vida</label>
                 <input type="file" class="form-control-file" name="adjunto" id="adjunto" required>
               </div>
               <div class="my-3">
-                <div class="text-center"><input type="submit"></input></div>
+                <div class="text-center"><input type="submit"></div>
               </div>
               <br>
               <br>
               <br>
             </div>
+          </div>
         </form>
       </div>
     </section><!-- End Cta Section -->
+
 
     <?php
     require 'vendor/autoload.php'; // Incluir el archivo de autoloading de Composer
@@ -225,13 +228,13 @@
           icon: 'warning',
           confirmButtonColor: '#3085d6',
           confirmButtonText: 'Ok'
-        });". $mail->ErrorInfo; // Muestra un mensaje de error si el correo no se pudo enviar
+        });" . $mail->ErrorInfo; // Muestra un mensaje de error si el correo no se pudo enviar
       }
     }
     ?>
   </main><!-- End #main -->
   <?php
-  include('includes/footer.php')//Footer
+  include('includes/footer.php') //Footer
   ?>
 
   <!-- Vendor JS Files -->
