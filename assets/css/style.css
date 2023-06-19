@@ -67,7 +67,7 @@ h6 {
   transition: all 0.5s;
   background: rgba(26, 24, 22, 0.8);
   z-index: 996;
-  color: rgba(255, 255, 255, 0.7);
+  color: #ffffffb3;
 }
 
 #topbar.topbar-transparent {
@@ -1468,5 +1468,6 @@ h2 {
   margin: 0;
   max-height: 84px;
 }
+
 
 

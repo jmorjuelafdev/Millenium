@@ -9,9 +9,9 @@
   "menu_pagina": [
     ["Inicio", "#hero"],
     ["Nosotros", "#nosotros"],
-    ["Servicios", "#servicios"],
+    ["Servicios", "#services"],
     ["Precios", "#menu"],
-    ["Estilistas", "#peluqueros"],
+    ["Estilistas", "#peluqueros1"],
     ["Clientes", "#gallery"],
     ["Contáctenos", "#contactenos"]
   ],
